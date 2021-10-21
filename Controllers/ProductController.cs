@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Products.Data;
 using Products.Dto;
 using Products.Models;
+using Products.Profiles;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -48,10 +49,20 @@ namespace Products.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateProduct(int id,Product product)
+        public async Task<IActionResult> UpdateProduct(int id,ProductUpdateDto product)
         {
-            _productApiRepo.UpdateProduct(id, product);
-            await  _productApiRepo.SaveChangesAsync();
+            /* _productApiRepo.UpdateProduct(id, product);
+             await  _productApiRepo.SaveChangesAsync();
+             return NoContent();*/
+            Product demomodel = await _productApiRepo.GetById(id);
+            if (demomodel == null)
+            {
+                return NotFound();
+            }
+            _mapper.Map(product, demomodel);
+            await _productApiRepo.UpdateProduct(demomodel);
+            await _productApiRepo.SaveChangesAsync();
+
             return NoContent();
         }
     }

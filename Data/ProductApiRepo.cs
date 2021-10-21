@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Products.Dto;
 using Products.Models;
 using System;
 using System.Collections.Generic;
@@ -47,9 +48,9 @@ namespace Products.Data
             return await _productDbContext.SaveChangesAsync() >= 0;
         }
 
-        public  void UpdateProduct(int id, Product product)
+        public  async Task UpdateProduct(Product product)
         {
-            if (product == null)
+            /*if (product == null)
             {
                 throw new ArgumentNullException();
             }
@@ -57,7 +58,7 @@ namespace Products.Data
 
              result.Name = product.Name;
              result.Details = product.Details;
-             result.Price = product.Price;
+             result.Price = product.Price;*/
         }  
         
     }

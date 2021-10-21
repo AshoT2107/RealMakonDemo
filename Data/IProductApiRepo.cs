@@ -1,4 +1,5 @@
-﻿using Products.Models;
+﻿using Products.Dto;
+using Products.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +12,7 @@ namespace Products.Data
         Task<IEnumerable<Product>>GetAll();
         Task<Product> GetById(int id);
         Task CreateProduct(Product product);
-        void UpdateProduct(int id, Product product);
+        Task UpdateProduct(Product product);
         void DeleteProduct(Product product);
         public Task<bool> SaveChangesAsync();
 
