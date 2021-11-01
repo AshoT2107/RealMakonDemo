@@ -31,7 +31,6 @@ namespace Products
 
             services.AddDbContext<ProductDbContext>(option => option.UseNpgsql(Configuration.GetConnectionString("ConnectionWithProduct")));
             services.AddControllers();
-            
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Products", Version = "v1" });
